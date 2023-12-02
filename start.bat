@@ -1,1 +1,1 @@
-node index.js RPC
+ts-node src/index.ts RPC

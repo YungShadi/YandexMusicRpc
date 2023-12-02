@@ -11,9 +11,12 @@ type ActivityType = {
   largeImageText: string;
   smallImageText: string;
 };
-let yandexToken = ``;
-const device = `os=unknown; os_version=unknown; manufacturer=unknown; model=unknown; clid=unknown; device_id=unknown; uuid=unknown`;
+// Информация о том как получить токены наисана в README
+const yandexToken = ``;
 const discordClientToken = "";
+
+const device = `os=unknown; os_version=unknown; manufacturer=unknown; model=unknown; clid=unknown; device_id=unknown; uuid=unknown`;
+
 const acivityData: ActivityType = {
   details: "",
   artist: "",
@@ -29,6 +32,7 @@ const acivityData: ActivityType = {
   largeImageText: "",
   smallImageText: "Туц туц",
 };
+
 const aunthClient = new YandexMusicClient({
   BASE: "https://api.music.yandex.net:443",
   HEADERS: {
@@ -60,8 +64,7 @@ client.on("ready", () => {
         ).result[0];
 
         for (const artist of currentTrack.artists) {
-          if (!acivityData.artist.includes(artist.name))
-            acivityData.artist += artist.name;
+          acivityData.artist = artist.name;
           if (
             acivityData.artist.split(", ").length !==
               currentTrack.artists.length &&
@@ -81,7 +84,7 @@ client.on("ready", () => {
               {
                 label:
                   acivityData.details.length > 32
-                    ? "Слушать " + acivityData.details.substring(0, 22) + "..."
+                    ? "Слушать " + acivityData.details.substring(0, 20) + "..."
                     : "Слушать " + acivityData.details,
                 url: `https://music.yandex.ru/album/${currentTrackId?.albumId}/track/${currentTrackId?.trackId}`,
               },
@@ -112,7 +115,7 @@ client.on("ready", () => {
     } catch (e: any) {
       throw new Error(e.message);
     }
-  }, 500);
+  }, 900);
 });
 console.log("rpc active");
 
