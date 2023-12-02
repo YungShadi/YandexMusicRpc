@@ -1,0 +1,24 @@
+{
+  "name": "ym-to-ds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/discord-rpc": "^4.0.8",
+    "@types/node": "^20.10.2"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "discord.js": "^14.14.1",
+    "nodemon": "^3.0.2",
+    "yandex-music-client": "^0.4.3",
+    "ym-api": "^1.2.1"
+  }
+}
