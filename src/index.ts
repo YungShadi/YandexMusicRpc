@@ -62,9 +62,11 @@ client.on("ready", () => {
             ],
           })
         ).result[0];
-
+        acivityData.artist = "";
         for (const artist of currentTrack.artists) {
-          acivityData.artist = artist.name;
+          if (!acivityData.artist.includes(artist.name)) {
+            acivityData.artist += artist.name;
+          }
           if (
             acivityData.artist.split(", ").length !==
               currentTrack.artists.length &&
@@ -115,7 +117,7 @@ client.on("ready", () => {
     } catch (e: any) {
       throw new Error(e.message);
     }
-  }, 900);
+  }, 500);
 });
 console.log("rpc active");
 
