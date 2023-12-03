@@ -12,14 +12,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-react": "^7.23.3",
     "@types/discord-rpc": "^4.0.8",
     "@types/node": "^20.10.2",
+    "babel-loader": "^9.1.3",
     "electron": "27.1.3"
   },
   "dependencies": {
     "discord-rpc": "^4.0.1",
     "discord.js": "^14.14.1",
     "nodemon": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "yandex-music-client": "^0.4.3",
     "ym-api": "^1.2.1"
   }
