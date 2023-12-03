@@ -109,10 +109,10 @@ client.on("ready", () => {
           smallImageKey: "headphones",
           largeImageKey: "52c887278299",
           smallImageText: acivityData.smallImageText,
-          largeImageText: acivityData.largeImageText,
-          // assets: {
-          //   large_image: acivityData.largeImageKey,
-          // },
+          // largeImageText: acivityData.largeImageText,
+          assets: {
+            large_image: acivityData.largeImageKey,
+          },
         });
       }
     } catch (e: any) {

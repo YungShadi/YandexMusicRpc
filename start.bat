@@ -1,6 +1,7 @@
 @echo off
 Setlocal EnableDelayedExpansion
 
+set "file_path=exports.ts"
 
 rem check if field exists 
 set "JS_FILE=exports.ts"
@@ -9,20 +10,14 @@ findstr /C:"const yandexToken" "%JS_FILE%"
 
 if %errorlevel% equ 0 (
     echo yandexToken found.
-    echo :
-
 ) else (
     echo yandexToken not found.
-    echo :
 )
 findstr /C:"const discordClientToken" "%JS_FILE%"
 if %errorlevel% equ 0 (
     echo discordClientToken found.
-    echo :
-
 ) else (
     echo discordClientToken not found.
-    echo :
 )
 
 echo Enter 1 to add yandexToken 
