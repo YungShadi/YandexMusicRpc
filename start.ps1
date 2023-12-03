@@ -21,12 +21,12 @@ else {
     Write-Host "discordClientToken not found."
 }
 
-Write-Host "Enter 1 to add yandexToken"
-Write-Host "Enter 2 to add discordClientToken"
-Write-Host "Enter start to initiate program"
+# Write-Host "Enter 1 to add yandexToken"
+# Write-Host "Enter 2 to add discordClientToken"
+# Write-Host "Enter start to initiate program"
 
-# Get user input
-$UserInput = Read-Host "Type what do you want to do"
+# # Get user input
+# $UserInput = Read-Host "Type what do you want to do"
 $continueLoop = $true
 
 while ($continueLoop) {

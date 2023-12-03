@@ -104,8 +104,8 @@ client.on("ready", () => {
             acivityData.buttons = [
               {
                 label:
-                  acivityData.details.length >= 32
-                    ? "Слушать " + acivityData.details.substring(0, 19) + "..."
+                  acivityData.details.length >= 21
+                    ? "Слушать " + acivityData.details.substring(0, 20) + "..."
                     : "Слушать " + acivityData.details,
                 url: `https://music.yandex.ru/album/${currentTrackId?.albumId}/track/${currentTrackId?.trackId}`,
               },
@@ -141,9 +141,13 @@ client.on("ready", () => {
     } catch (e: any) {
       throw new Error(e.message);
     }
-  }, 900);
+  }, 1000);
 });
-console.log("rpc active");
+console.log("Discord RPC activated");
+setInterval(async () => {
+  const { details, artist } = await acivityData;
+  console.log("Сейчас играет", details, "-", artist);
+}, 30000);
 
 client.login({
   clientId: discordClientToken,
