@@ -1,5 +1,6 @@
 import { Client } from "discord-rpc";
 import { YandexMusicClient } from "yandex-music-client/YandexMusicClient";
+import { yandexToken, discordClientToken } from "../exports";
 
 type ActivityType = {
   details: string;
@@ -12,8 +13,8 @@ type ActivityType = {
   smallImageText: string;
 };
 // Информация о том как получить токены наисана в README
-const yandexToken = ``;
-const discordClientToken = "";
+// const yandexToken = ``;
+// const discordClientToken = "";
 
 const device = `os=unknown; os_version=unknown; manufacturer=unknown; model=unknown; clid=unknown; device_id=unknown; uuid=unknown`;
 
