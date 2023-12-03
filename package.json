@@ -2,17 +2,19 @@
   "name": "ym-to-ds",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/index.ts",
+    "electron": "electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/discord-rpc": "^4.0.8",
-    "@types/node": "^20.10.2"
+    "@types/node": "^20.10.2",
+    "electron": "27.1.3"
   },
   "dependencies": {
     "discord-rpc": "^4.0.1",
