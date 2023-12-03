@@ -121,7 +121,7 @@ client.on("ready", () => {
         // https://avatars.yandex.net/get-music-content/42108/d76dcfd9.a.2801448-1/400x400
         acivityData.largeImageKey = currentTrack.coverUri.replace(
           "%%",
-          "400x400",
+          "150x150",
         );
       }
       if (acivityData.endTimeStamp > Date.now()) {
