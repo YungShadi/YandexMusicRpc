@@ -31,14 +31,15 @@
 Заходим в папку src, открываем файл index.ts\
 Удаляем эту строку\
 ![файл](image-2.png)
-У этих 2 строк убираем `//` в начале\
+У этих 2 строк убираем `//` в начале
 ![Alt text](image-3.png)
-И вписываем в эти строки нужные данные\
+И вписываем в эти строки нужные данные
 
 # Настройки в index.js
 
 1. ym_token:
    Получение токена яндекс музыки: https://github.com/MarshalX/yandex-music-api/discussions/513
+   
    Удобнее всего использовать расширение для браузера:
 
    - [chrome](https://chromewebstore.google.com/detail/yandex-music-token/lcbjeookjibfhjjopieifgjnhlegmkib)
