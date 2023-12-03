@@ -41,7 +41,8 @@
    Получение токена яндекс музыки: https://github.com/MarshalX/yandex-music-api/discussions/513
    Удобнее всего использовать расширение для браузера:
 
-   - [chrome](https://chromewebstore.google.com/detail/yandex-music-token/lcbjeookjibfhjjopieifgjnhlegmkib) -[Firefox](https://addons.mozilla.org/en-US/firefox/addon/yandex-music-token/)
+   - [chrome](https://chromewebstore.google.com/detail/yandex-music-token/lcbjeookjibfhjjopieifgjnhlegmkib)
+   - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/yandex-music-token/)
 
 2. device:
    Получение девайса:
