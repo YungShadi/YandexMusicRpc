@@ -6,7 +6,7 @@ type ActivityType = {
   details: string;
   artist: string;
   endTimeStamp: number;
-  buttons: [{ label: string; url: string }];
+  buttons: { label: string; url: string }[];
   largeImageKey: string;
   smallImageKey: string;
   largeImageText: string;
@@ -15,6 +15,18 @@ type ActivityType = {
 // Информация о том как получить токены наисана в README
 // const yandexToken = ``;
 // const discordClientToken = "";
+
+// Показывать ссылку на репозиторий?
+const addRepoButton = true; // true-да, false-нет
+// Показывать кнопку с ссылкой на трек?
+const addTrackButton = true; // true-да, false-нет
+// Показывать таймер?
+const addTimer = true; // true-да, false-нет
+
+//Здесь можете указать ссылку на картику или гифку дя маленькой картинки. По дефолту наушники
+const smallImage = "headphones";
+// Здесь можете напсисать текст, который будет отображаться при наведении на маленькую картнку
+const smallImageText = "Туц-туц";
 
 const device = `os=unknown; os_version=unknown; manufacturer=unknown; model=unknown; clid=unknown; device_id=unknown; uuid=unknown`;
 
@@ -29,9 +41,9 @@ const acivityData: ActivityType = {
     },
   ],
   largeImageKey: ``,
-  smallImageKey: "music",
+  smallImageKey: "",
   largeImageText: "",
-  smallImageText: "Туц туц",
+  smallImageText: "",
 };
 
 const aunthClient = new YandexMusicClient({
@@ -46,16 +58,20 @@ const client = new Client({ transport: "ipc" });
 client.on("ready", () => {
   setInterval(async () => {
     try {
+      // Получаем очереди юзера
       const queues = await aunthClient.queues.getQueues(device);
+      // Получаем нынешную очередь(она будет первой)
       const currentQueue = await aunthClient.queues.getQueueById(
         queues.result.queues[0].id,
       );
-
+      // Из очереди получаем треки и идекс нынешнего
       const { tracks, currentIndex } = currentQueue.result;
-
+      // Получаем айдишник трека
       const currentTrackId = tracks?.at(currentIndex || 0);
 
+      // Здесь наполняем нашу активность данными
       if (currentTrackId) {
+        // Получаем трек, который чейчас играет
         const currentTrack = (
           await aunthClient.tracks.getTracks({
             "track-ids": [
@@ -63,6 +79,7 @@ client.on("ready", () => {
             ],
           })
         ).result[0];
+        // Записываем данные
         acivityData.artist = "";
         for (const artist of currentTrack.artists) {
           if (!acivityData.artist.includes(artist.name)) {
@@ -78,26 +95,33 @@ client.on("ready", () => {
           }
         }
         if (acivityData.details !== currentTrack.title) {
-          acivityData.endTimeStamp = Date.now() + currentTrack.durationMs;
-
+          if (addTimer) {
+            acivityData.endTimeStamp = Date.now() + currentTrack.durationMs;
+          }
           acivityData.details = currentTrack.title;
           acivityData.largeImageText = currentTrack.title;
-          if (acivityData.buttons) {
+          if (addTrackButton) {
             acivityData.buttons = [
               {
                 label:
-                  acivityData.details.length > 32
-                    ? "Слушать " + acivityData.details.substring(0, 20) + "..."
+                  acivityData.details.length >= 32
+                    ? "Слушать " + acivityData.details.substring(0, 19) + "..."
                     : "Слушать " + acivityData.details,
                 url: `https://music.yandex.ru/album/${currentTrackId?.albumId}/track/${currentTrackId?.trackId}`,
               },
             ];
           }
+          if (addRepoButton) {
+            acivityData.buttons.push({
+              label: "Хочу такой же статус",
+              url: "https://github.com/YungShadi/ym-rpc-ts",
+            });
+          }
         }
         // https://avatars.yandex.net/get-music-content/42108/d76dcfd9.a.2801448-1/400x400
         acivityData.largeImageKey = currentTrack.coverUri.replace(
           "%%",
-          "200x200",
+          "400x400",
         );
       }
       if (acivityData.endTimeStamp > Date.now()) {
@@ -106,19 +130,18 @@ client.on("ready", () => {
           buttons: acivityData.buttons,
           state: acivityData.artist,
           endTimestamp: acivityData.endTimeStamp,
-          smallImageKey: "headphones",
-          largeImageKey: "52c887278299",
-          smallImageText: acivityData.smallImageText,
-          // largeImageText: acivityData.largeImageText,
-          assets: {
-            large_image: acivityData.largeImageKey,
-          },
+          startTimestamp: Date.now(),
+          smallImageKey: smallImage,
+          largeImageKey: `https://${acivityData.largeImageKey}`,
+          smallImageText: smallImageText,
+          largeImageText: acivityData.largeImageText,
+          instance: true,
         });
       }
     } catch (e: any) {
       throw new Error(e.message);
     }
-  }, 500);
+  }, 900);
 });
 console.log("rpc active");
 
